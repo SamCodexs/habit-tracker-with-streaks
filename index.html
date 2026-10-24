@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><!--for suing emojis-->
+  <!--make page width follow device width and zoom is set to 100 percent-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--THIS IS THE TITLE OF THE PAGE-->
+  <title>Little Steps | Habit Tracker</title>
+  <!--link connect the external file to our html page and rel tell that file has styling rules
+  href tell which file to be loaded( this was mainly connecting css)-->
+  <link rel="stylesheet" href="style.css">
+  <!--script connects javascript to webpage and src points to our java file
+  defer is used to let the html get parse that is to read and interpret
+   code so browser can understandbefore the javascript run-->
+  <script src="script.js" defer></script>
+</head><!--head is colsed which contains our connecting with css and javascript and our title of our page-->
+<body>
+  <main class="app">
+    <header class="topbar"><!--to create a header in our page nd give CSS a name to use when styling that section-->
+      <a class="brand" href="#"><!--a creates a clickable link nd href specifies where link goes
+        and # is basically a placeholder that point at top of page-->
+        <span class="brand-icon">🌱</span><!--span start a content section and brand icon is used to give 
+        that section a name for css to find it-->
+        <span>little steps<span class="brand-dot">.</span></span><!--liitle steps is website name
+        and created a dot after the name. the brand dot allo CSS to syle that dot-->
+      </a>
+      <span class="today-pill" id="today-label">Your daily journey</span><!--id is for javascript to find and your daily
+      jouney is the text to be displayed-->
+    </header>
+<!--important that class is commonly used for styling group of elements while id identifies 1 element-->
+    <section class="welcome"><!--this open a section for welcome message and welcome class let css stle that section-->
+
+      <div><!--it groups the small heading and main heading so they can be arranged and style together-->
+        <p class="eyebrow">YOUR PERSONAL HABIT GARDEN</p><!--for writing para-->
+        <h1>Small steps,<br><span>big changes.</span></h1><!--h1 is for main heading and br is line break and span wraps a small piece
+        of text allowing css to style big changes-->
+        <p class="subtitle">You don't have to be perfect. Just keep growing.</p>
+      </div>
+      <div class="welcome-art" aria-hidden="true">🌷</div><!--aria hidden tell the screen readers to ignore the elemnt as it is a decorative element-->
+    </section>
+<!--this section now contain our habit statistics and article group together one self contained peice of content-->
+    <section class="stats-grid">
+      <article class="stat-card">
+        <span class="stat-icon lavender">🌿</span><!--stat icon is a class for icon building and lavendar is another class that can give icon a particular colour-->
+        <p>My habits</p>
+        <strong id="habit-count">0</strong><!--strong marks imp text usually displayed in bold while 0 is the initial number displayed-->
+        <small>Habits you're growing</small><!--it displays supporting text usually in small font-->
+      </article>
+      <article class="stat-card"><!--reusing the stat card for avoiding writing seperate css for every card-->
+        <span class="stat-icon peach">☀️</span>
+        <p>Done today</p>
+        <strong id="done-count">0/0</strong>
+        <small>Every little win counts</small>
+      </article>
+      <article class="stat-card">
+        <span class="stat-icon mint">🔥</span>
+        <p>Best streak</p>
+        <strong id="best-streak">0 days</strong>
+        <small>Keep your momentum</small>
+      </article>
+    </section>
+<!--now this section has our weekly calendar-->
+    <section class="panel week-panel"><!--panel is also repeated to provide same styling for panel like area and week panel lets CSS apply styling specifically to weekly calendar-->
+
+      <div class="section-heading"><!--this creates our calendar heading and week label group together and CSS can use the section heading to control their layout-->
+        <div><!--OPENING of another container-->
+          <p class="eyebrow">ONE DAY AT A TIME</p>
+          <h2>Your week</h2><!--SEcond heading-->
+        </div>
+        <span class="week-label" id="week-label"></span><!--this section is empty right now as javascript will fill it with text like date day later-->
+      </div>
+      <div class="week-grid" id="week-grid"></div>
+    </section>
+
+    <section class="content-grid">
+      <section class="panel habits-panel"><!--this contains the habit list and the form where 
+        users can add new habits-->
+        <div class="section-heading"><!--this creates a container for heading area of habit panel
+          the class section heading let CSS style-->
+          <div><!--this open another container inside section heading-->
+            <p class="eyebrow">MAKE IT A ROUTINE</p>
+            <h2>Today's habits <span class="heading-leaf">✿</span></h2><!--wraps the flower symbol so CSS can style-->
+          </div>
+          <span class="count-pill" id="today-progress">0 of 0</span>
+        </div>
+
+        <form id="habit-form" class="add-form"><!--this starts an HTML form basically for 
+          user type a new habit and submit it-->
+          <label class="sr-only" for="habit-input">New habit name</label><!--label describes what input field is for
+          connects the label to the input whose ID is habit input and sr usually means the label is visually hidden but remain available
+          to screen readers,helping people who uses asistive technology-->
+          <input id="habit-input" type="text"
+            placeholder="e.g. Read for 10 minutes..." maxlength="60" required>
+          <button type="submit" class="add-button">+ Add habit</button>
+        </form><!--type=text means userr can type text and placeholder displays an example inside empty box and maxlength is 60 and it is mandatory to fill-->
+<!--button creates a clickable button and type submit means clicking it will submit the form -->
+        <p class="form-hint">Start small. You can always add more later.</p>
+        <div id="habit-list" class="habit-list"></div>
+        <div id="empty-state" class="empty-state">
+          <span>🪴</span>
+          <h3>Your garden is waiting!</h3>
+          <p>Add your first habit above and watch yourself grow.</p>
+        </div>
+      </section>
+
+      <aside class="side-column"><!--aside is to group the content that sit alongside main content , like the weekly progress and the milestone card-->
+        <section class="panel progress-panel">
+          <p class="eyebrow">YOUR LITTLE WINS</p>
+          <h2>Weekly progress</h2>
+          <div class="progress-number"><!--this opens a container that groups the progress percentage and its accompanying text together-->
+            <strong id="progress-percent">0%</strong>
+            <span>completed</span>
+          </div>
+          <div class="progress-track">
+            <!--progress track is the outer container for the progress bar -->
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <p id="progress-message" class="progress-message">
+            Every journey begins with one step 🌱
+          </p>
+        </section>
+
+        <section class="panel badges-panel">
+          <p class="eyebrow">KEEP GROWING</p>
+          <h2>Your milestones</h2>
+          <div class="badge-row">
+            <span class="badge-emoji">🌱</span>
+            <div><strong>First step</strong><small>Complete a habit once</small></div>
+            <span class="badge-status" id="badge-first">Locked</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-emoji">🔥</span>
+            <div><strong>3-day streak</strong><small>Build a little momentum</small></div>
+            <span class="badge-status" id="badge-three">Locked</span>
+          </div>
+          <div class="badge-row">
+            <span class="badge-emoji">⭐</span>
+            <div><strong>7-day streak</strong><small>A whole week of growth</small></div>
+            <span class="badge-status" id="badge-seven">Locked</span>
+          </div>
+        </section>
+      </aside>
+    </section>
+
+    <footer>
+      <p>Made with 💚 and little steps. Progress, not perfection.</p>
+    </footer>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  </main>
+  <script src="script.js"defer></script>
+</body>
+</html>
